@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    'contao_garage.page400.controller.bad_request_page_controller':
+        class: ContaoGarage\Page400\Controller\Page\BadRequestPageController
+        tags:
+            - { name: 'contao.page', type: 'error_badrequest', contentComposition: true }
+
+    'contao_garage.page400.controller.invalid_request_token_page_controller':
+        class: ContaoGarage\Page400\Controller\Page\BadRequestPageController
+        tags:
+            - { name: 'contao.page', type: 'error_invalidrequesttoken', contentComposition: true }

@@ -1,0 +1,31 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    ##
+    # Exception listener
+    #
+    # The priority of the exception listener must be higher than the one of the
+    # Twig exception listener (defaults to -128). The pretty error screen listener should be
+    # very late to not interfere with the exception bubbling.
+    #
+    # -  96: Contao\CoreBundle\EventListener\ExceptionConverterListener
+    # -  64: Contao\CoreBundle\EventListener\ResponseExceptionListener
+    # - -96: Contao\CoreBundle\EventListener\PrettyErrorScreenListener
+    ##
+    contao_garage.listener.pretty_error_screens:
+        class: ContaoGarage\Page400\EventListener\PrettyErrorScreenListener
+        arguments:
+            - '@contao.framework'
+            - '@security.helper'
+            - '@contao.routing.page_registry'
+            - '@http_kernel'
+            - '@contao.routing.page_finder'
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, priority: -95 }
+
+    contao_garage.page400.listener.data_container.page_label_callback:
+        class: ContaoGarage\Page400\EventListener\DataContainer\PageLabelCallbackListener
+        tags:
+            - { name: 'contao.callback', table: 'tl_page', target: 'list.label.label' }

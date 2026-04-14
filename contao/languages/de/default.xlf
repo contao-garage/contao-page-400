@@ -1,0 +1,22 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/default.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="PTY.error_badrequest.0">
+        <source>400 Bad request</source>
+        <target>400 Fehlerhafte Anfrage</target>
+      </trans-unit>
+      <trans-unit id="PTY.error_badrequest.1">
+        <source>If a member requests a page using incorrect syntax or invalid data, a 400 error page will be loaded instead.</source>
+        <target>Ruft ein Mitglied eine Seite mit fehlerhafter Syntax oder ungültigen Daten in der Anfrage auf, wird stattdessen eine 400-Fehlerseite geladen.</target>
+      </trans-unit>
+      <trans-unit id="PTY.error_invalidrequesttoken.0">
+        <source>400 Bad request (Invalid request token)</source>
+        <target>400 Fehlerhafte Anfrage (Ungültiges Anfrage-Token)</target>
+      </trans-unit>
+      <trans-unit id="PTY.error_invalidrequesttoken.1">
+        <source>If a member requests a page using an invalid request token, a 400 error page will be loaded for this specific client error. In the error message you may provide a possibility for a page reload that will renew the request token.</source>
+        <target>Ruft ein Mitglied eine Seite mit ungültigem Anfrage-Token auf, wird stattdessen eine 400-Fehlerseite für diesen speziellen Anfragefehler geladen. Geben Sie dem Mitglied in der Fehlermeldung die Möglichkeit zum Reload der Seite, um das Anfrage-Token zu erneuern.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
