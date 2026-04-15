@@ -61,14 +61,14 @@ class PrettyErrorScreenListener
     {
         $exception = $event->getThrowable();
 
+        if (!$exception instanceof ExceptionEvent || 400 !== $exception->getStatusCode()) {
+            return;
+        }
+
         try {
             $isBackendUser = $this->security->isGranted('ROLE_USER');
         } catch (AuthenticationCredentialsNotFoundException) {
             $isBackendUser = false;
-        }
-
-        if (400 !== $exception->getStatusCode()) {
-            return;
         }
 
         switch (true) {
