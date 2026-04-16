@@ -1,5 +1,6 @@
 {
     "name": "contao-garage/contao-page-400",
+    "description": "Adds two page types responding with a 400 status code caused by either a bad request exception or by an invalid token exception.",
     "license": "MIT",
     "type": "contao-bundle",
     "keywords": ["contao bundle", "page controller error 400", "bad request", "invalid request token"],
