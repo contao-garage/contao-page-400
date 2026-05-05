@@ -61,7 +61,7 @@ class PrettyErrorScreenListener
     {
         $exception = $event->getThrowable();
 
-        if (!$exception instanceof ExceptionEvent || 400 !== $exception->getStatusCode()) {
+        if (!$exception instanceof BadRequestHttpException || 400 !== $exception->getStatusCode()) {
             return;
         }
 
