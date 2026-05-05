@@ -22,9 +22,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class BadRequestPageController extends AbstractController implements ContentCompositionInterface
 {
-    public function __construct(
-        private readonly ContaoFramework $framework,
-    ) {
+    public function __construct(private readonly ContaoFramework $framework)
+    {
     }
 
     public function __invoke(PageModel $pageModel, Request $request): Response
