@@ -43,10 +43,7 @@
     "autoload-dev": {
         "psr-4": {
             "ContaoGarage\\Page400\\Tests\\": "tests/"
-        },
-        "classmap": [
-            "tests/Fixtures/app/ContaoManagerPlugin.php"
-        ]
+        }
     },
     "extra": {
         "contao-manager-plugin": "ContaoGarage\\Page400\\ContaoManager\\Plugin"
