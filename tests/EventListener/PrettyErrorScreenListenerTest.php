@@ -42,7 +42,7 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
         string $pageType,
     ): void
     {
-        $regularPage = $this->createClassWithPropertiesStub(PageModel::class, ['type' => 'regular']);
+        $regularPage = $this->mockClassWithProperties(PageModel::class, ['type' => 'regular']);
         $regularPage
             ->method('loadDetails')
             ->willReturnSelf()
@@ -57,14 +57,14 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
 
         ]);
 
-        $errorPage = $this->createClassWithPropertiesStub(PageModel::class, ['type' => $pageType]);
+        $errorPage = $this->mockClassWithProperties(PageModel::class, ['type' => $pageType]);
         $errorPage
             ->method('loadDetails')
             ->willReturnSelf()
         ;
 
         $subRequest = null;
-        $framework = $this->createContaoFrameworkStub();
+        $framework = $this->mockContaoFramework();
         $security = $this->createStub(Security::class);
         $security
             ->method('isGranted')
