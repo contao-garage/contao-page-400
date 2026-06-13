@@ -92,7 +92,7 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
                     $pageModel = $request->attributes->get('pageModel');
 
                     return new Response(\sprintf('Response with error page type: %s;', $pageModel->type), 400);
-                }
+                },
             )
         ;
 
