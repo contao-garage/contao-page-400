@@ -1,5 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of contao-garage/contao-page-400.
+ *
+ * @author    Martin Schumann <martin.schumann@ontao-garage.de>
+ * @license   MIT
+ * @copyright Contao Garage 2026
+ */
+
 namespace ContaoGarage\Page400\Tests\EventListener;
 
 use Contao\CoreBundle\Exception\BadRequestException;
@@ -36,11 +46,7 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
     }
 
     #[DataProvider('exceptionProvider')]
-    public function testRendersPretty400ErrorPage(
-        string $contaoException,
-        string $exceptionMessage,
-        string $pageType,
-    ): void
+    public function testRendersPretty400ErrorPage(string $contaoException, string $exceptionMessage, string $pageType): void
     {
         $regularPage = $this->mockClassWithProperties(PageModel::class, ['type' => 'regular']);
         $regularPage
@@ -54,7 +60,6 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
             '_scope' => 'frontend',
             '_format' => 'html',
             'pageModel' => $regularPage,
-
         ]);
 
         $errorPage = $this->mockClassWithProperties(PageModel::class, ['type' => $pageType]);
@@ -81,12 +86,14 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
                 HttpKernelInterface::SUB_REQUEST,
                 false,
             )
-            ->willReturnCallback(function (Request $request) use (&$subRequest): Response {
-                $subRequest = $request;
-                $pageModel = $request->attributes->get('pageModel');
+            ->willReturnCallback(
+                static function (Request $request) use (&$subRequest): Response {
+                    $subRequest = $request;
+                    $pageModel = $request->attributes->get('pageModel');
 
-                return new Response(sprintf('Response with error page type: %s;', $pageModel->type), 400);
-            })
+                    return new Response(\sprintf('Response with error page type: %s;', $pageModel->type), 400);
+                }
+            )
         ;
 
         $pageFinder = $this->createMock(PageFinder::class);
@@ -95,7 +102,7 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
             ->method('findFirstPageOfTypeForRequest')
             ->with(
                 $this->identicalTo($request),
-                $pageType
+                $pageType,
             )
             ->willReturn($errorPage)
         ;
@@ -107,13 +114,15 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
                 'pageModel' => $errorPage,
                 '_scope' => 'frontend',
                 '_format' => 'html',
-            ]);
+            ])
+        ;
 
         $pageRegistry
             ->expects($this->once())
             ->method('getRoute')
             ->with($errorPage)
-            ->willReturn($route);
+            ->willReturn($route)
+        ;
 
         $exception = new BadRequestHttpException(
             'A Symfony bad request HTTP exception for unit testing.',
@@ -126,11 +135,11 @@ class PrettyErrorScreenListenerTest extends ContaoTestCase
 
         $this->assertTrue(
             $event->hasResponse(),
-            sprintf(
+            \sprintf(
                 'No response was set. Current throwable: %s: %s',
                 $event->getThrowable()::class,
-                $event->getThrowable()->getMessage()
-            )
+                $event->getThrowable()->getMessage(),
+            ),
         );
 
         $this->assertInstanceOf(Request::class, $subRequest);
