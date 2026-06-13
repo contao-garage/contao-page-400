@@ -27,6 +27,7 @@ return ECSConfig::configure()
     ->withSets([SetList::CONTAO])
     ->withPaths([
         __DIR__ . '/src',
+        __DIR__ . '/tests',
     ])
     ->withConfiguredRule(HeaderCommentFixer::class, ['header' => "$header"])
     ->withConfiguredRule(BlankLineBeforeStatementFixer::class, ['statements' => [
@@ -44,8 +45,8 @@ return ECSConfig::configure()
     ->withRules(
         [ConcatSpaceFixer::class],
         [NotOperatorWithSuccessorSpaceFixer::class],
-        [NoUselessReturnFixerTest::class],
-        [NoWhitespaceBeforeCommaInArrayFixerTest::class],
+        [NoUselessReturnFixer::class],
+        [NoWhitespaceBeforeCommaInArrayFixer::class],
         [PhpdocAddMissingParamAnnotationFixer::class],
         [PhpdocOrderFixer::class],
     )
