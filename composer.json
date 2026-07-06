@@ -22,6 +22,7 @@
     },
     "require-dev": {
         "contao/easy-coding-standard": "^6.13",
+        "symplify/easy-coding-standard": "^13.1 <13.2.0 || >=13.3.0",
         "contao/rector": "^1.3",
         "contao/test-case": "^5.3",
         "contao/manager-bundle": "^5.3",
